@@ -5734,6 +5734,288 @@ html.dark body #tab-home .card {
 }
 </style>
 
+<style id="nourish-premium-v2">
+/* ═══════════════════════════════════════════════
+   NOURISH — PREMIUM UPGRADE V2
+   ─────────────────────────────────────────────── */
+
+/* ── 1. SHADOW SYSTEM ── */
+:root {
+  --shadow-nourish-card: 0 2px 12px rgba(124,81,70,.07), 0 1px 3px rgba(124,81,70,.04);
+  --shadow-nourish-elevated: 0 10px 32px rgba(124,81,70,.12), 0 2px 8px rgba(124,81,70,.06);
+  --shadow-nourish-float: 0 20px 56px rgba(124,81,70,.16), 0 4px 14px rgba(124,81,70,.08);
+  --shadow-nourish-inner: inset 0 1px 0 rgba(255,255,255,.7);
+}
+html.dark, body.dark, body.theme-dark {
+  --shadow-nourish-card: 0 2px 12px rgba(0,0,0,.32), 0 1px 3px rgba(0,0,0,.22);
+  --shadow-nourish-elevated: 0 10px 32px rgba(0,0,0,.48), 0 2px 8px rgba(0,0,0,.3);
+  --shadow-nourish-float: 0 20px 56px rgba(0,0,0,.62), 0 4px 14px rgba(0,0,0,.4);
+  --shadow-nourish-inner: inset 0 1px 0 rgba(255,255,255,.04);
+}
+
+/* ── 2. CARD SYSTEM ── */
+.card, .swap-card, .meal-section, .focus-card {
+  border-radius: 24px !important;
+  box-shadow: var(--shadow-nourish-elevated), var(--shadow-nourish-inner) !important;
+  transition: transform 200ms ease, box-shadow 200ms ease !important;
+}
+@media (hover: hover) {
+  .card:hover, .swap-card:hover, .focus-card:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: var(--shadow-nourish-float), var(--shadow-nourish-inner) !important;
+  }
+}
+
+/* ── 3. BOTTOM NAV: Fix pill at 320px ── */
+.bottom-nav {
+  border-radius: 36px !important;
+  box-shadow:
+    0 16px 40px rgba(124,81,70,.14),
+    0 2px 8px rgba(124,81,70,.08),
+    inset 0 1px 0 rgba(255,255,255,.85) !important;
+}
+html.dark .bottom-nav, body.dark .bottom-nav, body.theme-dark .bottom-nav {
+  box-shadow:
+    0 16px 40px rgba(0,0,0,.5),
+    0 2px 8px rgba(0,0,0,.32),
+    inset 0 1px 0 rgba(255,255,255,.04) !important;
+}
+/* Ensure all 5 items fit — widen at narrow screens */
+@media (max-width: 420px) {
+  .bottom-nav {
+    width: calc(100vw - 16px) !important;
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+  }
+  .nav-label { font-size: 9px !important; }
+}
+@media (max-width: 360px) {
+  .nav-label { display: none !important; }
+  .nav-btn { gap: 0 !important; padding: 10px 2px 8px !important; }
+}
+/* "Supplements" label: shorten at very narrow widths */
+@media (max-width: 390px) {
+  #nav-supplements .nav-label::after { content: ""; }
+  #nav-supplements .nav-label { font-size: 8.5px !important; letter-spacing: -0.02em !important; }
+}
+
+/* ── 4. NAV BUTTON POLISH ── */
+.nav-btn {
+  border-radius: 28px !important;
+  transition: transform 140ms ease, background 160ms ease !important;
+}
+.nav-label {
+  font-size: 10px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.01em !important;
+}
+.nav-btn.active {
+  background: color-mix(in srgb, var(--rose, #d1907b) 14%, rgba(255,255,255,.6)) !important;
+}
+html.dark .nav-btn.active, body.dark .nav-btn.active {
+  background: color-mix(in srgb, var(--rose, #d1907b) 16%, rgba(255,255,255,.05)) !important;
+}
+
+/* ── 5. CHAPTER BANNER: Fix 320px double-wrap ── */
+.trimester-banner, .trimester-banner-inner, [class*="chapter-banner"], [class*="week-banner"] {
+  border-radius: 16px !important;
+  padding: 10px 14px !important;
+  font-size: 13px !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+@media (max-width: 380px) {
+  .trimester-banner, .trimester-banner-inner {
+    font-size: 11.5px !important;
+    padding: 8px 10px !important;
+    white-space: normal !important;
+  }
+}
+
+/* ── 6. TABLET LAYOUT: Expand content column ── */
+@media (min-width: 768px) and (max-width: 1199px) {
+  #tab-viewport {
+    max-width: min(720px, 100%) !important;
+    margin: 0 auto !important;
+  }
+}
+@media (min-width: 1200px) {
+  #tab-viewport {
+    max-width: min(1040px, 100%) !important;
+  }
+}
+
+/* ── 7. SUPPLEMENT ROWS: Dark mode fix ── */
+.supp-pill {
+  border-radius: 18px !important;
+  transition: transform 150ms ease, box-shadow 150ms ease, background 180ms ease !important;
+}
+html.dark .supp-pill, body.dark .supp-pill, body.theme-dark .supp-pill {
+  background: rgba(60,40,30,.75) !important;
+  border-color: rgba(255,255,255,.1) !important;
+}
+@media (hover: hover) {
+  .supp-pill:hover {
+    transform: scale(1.02) !important;
+    box-shadow: var(--shadow-nourish-elevated) !important;
+  }
+}
+
+/* ── 8. PROGRESS BARS (TODAY'S TARGETS) ── */
+.nutrient-bar, .target-bar, .progress-bar {
+  border-radius: 999px !important;
+  min-height: 6px !important;
+  height: 6px !important;
+  transition: width 600ms cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+.nutrient-track, .target-track, .progress-track {
+  border-radius: 999px !important;
+  height: 6px !important;
+  overflow: hidden !important;
+}
+/* Show a ghost fill so targets don't look broken in demo ── */
+.nutrient-bar:not([style*="width"]),
+.target-bar:not([style*="width"]) {
+  width: 8% !important;
+  opacity: 0.4 !important;
+}
+
+/* ── 9. HERO SECTION ── */
+.home-hero, .profile-hero {
+  border-radius: 28px !important;
+  box-shadow: var(--shadow-nourish-float), var(--shadow-nourish-inner) !important;
+}
+
+/* ── 10. NOURISH SCORE ── */
+.nourish-score-wrap, .score-ring {
+  filter: drop-shadow(0 10px 24px color-mix(in srgb, var(--rose, #d1907b) 18%, transparent)) !important;
+}
+.score-number, .nourish-score-value {
+  font-size: clamp(2.4rem, 8vw, 3.2rem) !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.04em !important;
+  line-height: 1 !important;
+}
+
+/* ── 11. MEAL SECTIONS ── */
+.meal-section {
+  border-radius: 20px !important;
+  transition: transform 150ms ease, box-shadow 150ms ease !important;
+}
+@media (hover: hover) {
+  .meal-section:hover {
+    transform: translateY(-1px) !important;
+    box-shadow: var(--shadow-nourish-elevated) !important;
+  }
+}
+
+/* ── 12. WATER TRACKER ── */
+.water-section {
+  border-radius: 20px !important;
+}
+.water-glass, .water-glass-btn {
+  transition: transform 150ms ease !important;
+}
+.water-glass.filled:active, .water-glass-btn:active {
+  transform: scale(0.9) !important;
+}
+
+/* ── 13. BUTTONS ── */
+.btn, button.primary, .cta-btn, .log-btn {
+  border-radius: 16px !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.01em !important;
+  transition: transform 140ms ease, box-shadow 170ms ease !important;
+}
+.btn:active, button.primary:active, .cta-btn:active {
+  transform: scale(0.97) !important;
+}
+
+/* ── 14. INPUTS ── */
+input[type="text"], input[type="number"], select, textarea {
+  border-radius: 12px !important;
+  border-width: 1.5px !important;
+  transition: border-color 180ms ease, box-shadow 180ms ease !important;
+}
+input:focus, select:focus, textarea:focus {
+  border-color: var(--rose, #d1907b) !important;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--rose, #d1907b) 15%, transparent) !important;
+  outline: none !important;
+}
+
+/* ── 15. CARD ENTRY ANIMATION ── */
+@keyframes nourish-card-in {
+  from { opacity: 0; transform: translateY(10px) scale(0.99); }
+  to   { opacity: 1; transform: none; }
+}
+.card, .swap-card, .meal-section, .focus-card {
+  animation: nourish-card-in 0.38s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .card, .swap-card, .meal-section, .focus-card { animation: none !important; }
+}
+
+/* ── 16. SECTION HEADERS ── */
+.section-title, .tab-section-title, h2 {
+  letter-spacing: -0.02em !important;
+  line-height: 1.25 !important;
+}
+.section-kicker, .kicker {
+  font-size: 10.5px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+}
+
+/* ── 17. SUPPLEMENT CATEGORY HEADERS ── */
+.supp-category-header, .supp-time-label {
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  opacity: 0.7 !important;
+  margin-bottom: 10px !important;
+}
+
+/* ── 18. TINY CARDS / METRIC CARDS ── */
+.tiny-card, .metric-card {
+  border-radius: 18px !important;
+  box-shadow: var(--shadow-nourish-card), var(--shadow-nourish-inner) !important;
+}
+
+/* ── 19. LITTLE ONE SECTION ── */
+.pillar-journey, [class*="little-one"] {
+  border-radius: 20px !important;
+  box-shadow: var(--shadow-nourish-elevated), var(--shadow-nourish-inner) !important;
+}
+
+/* ── 20. DESKTOP PAGE HEADER ── */
+.desktop-page-header {
+  border-radius: 0 0 20px 20px !important;
+  box-shadow: var(--shadow-nourish-card) !important;
+}
+
+/* ── 21. MILESTONE STRIP ── */
+.milestone-strip {
+  border-radius: 20px !important;
+}
+
+/* ── 22. ONBOARDING MODAL ── */
+.onboarding-modal, .modal {
+  border-radius: 28px !important;
+  box-shadow: var(--shadow-nourish-float) !important;
+}
+
+/* ── 23. DEMO PREVIEW CHIP: Move below nav elements ── */
+[class*="demo-chip"], [id*="demoChip"], [id*="demo-preview"], [class*="demo-preview"] {
+  border-radius: 999px !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.06em !important;
+}
+</style>
+
 </head>
 <body>
 <div id="splash" style="position:fixed;inset:0;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;pointer-events:none;transition:opacity 400ms ease;">
@@ -11157,6 +11439,394 @@ function renderSupplementTracker() {
   else window.addEventListener("load", reveal, { once: true });
 })();
 </script>
+
+<style id="nourish-system-v3">
+/* ── Phase 4+5: Nourish premium depth & nav fix ── */
+
+/* CRITICAL: Nav overflow at 320px — "Supplements" truncates */
+@media (max-width: 359px) {
+  .bottom-nav { padding-left: 4px !important; padding-right: 4px !important; }
+  .nav-btn { padding: 8px 2px 6px !important; gap: 2px !important; }
+  .nav-label { font-size: 0 !important; } /* icons-only at 320 */
+  .nav-icon { width: 20px !important; height: 20px !important; }
+}
+
+/* 360–390px: "Supplements" label abbreviated */
+@media (min-width: 360px) and (max-width: 410px) {
+  #nav-supplements .nav-label,
+  [data-tab="supplements"] .nav-label,
+  .nav-btn:nth-child(4) .nav-label {
+    font-size: 8px !important;
+    letter-spacing: -0.03em !important;
+    white-space: nowrap !important;
+  }
+}
+
+/* Nav pill: richer elevation */
+.bottom-nav {
+  box-shadow:
+    0 16px 40px rgba(66,57,49,.18),
+    0 2px 8px rgba(66,57,49,.10),
+    inset 0 1px 0 rgba(255,255,255,.92) !important;
+}
+html.dark .bottom-nav,
+body.dark .bottom-nav {
+  background: rgba(36,28,24,.96) !important;
+  box-shadow:
+    0 12px 32px rgba(0,0,0,.4),
+    inset 0 1px 0 rgba(255,255,255,.05) !important;
+  border-color: rgba(255,255,255,.07) !important;
+}
+
+/* Active nav item: rose pill */
+.nav-btn.active {
+  background: rgba(201,72,109,.12) !important;
+  border-radius: 14px !important;
+}
+.nav-btn.active .nav-icon { transform: translateY(-1px) scale(1.06) !important; }
+
+/* Cards: warmer shadow stack + inner highlight */
+.card, .swap-card, .meal-section, .supp-card, [class*="card"] {
+  box-shadow:
+    0 6px 20px rgba(124,81,70,.10),
+    0 1px 4px rgba(124,81,70,.06),
+    inset 0 1px 0 rgba(255,255,255,.72) !important;
+  border-radius: 22px !important;
+}
+html.dark .card,
+html.dark .swap-card,
+body.dark .card,
+body.dark .swap-card {
+  background: rgba(40,28,22,.94) !important;
+  box-shadow:
+    0 6px 22px rgba(0,0,0,.32),
+    inset 0 1px 0 rgba(255,255,255,.05) !important;
+  border-color: rgba(255,255,255,.07) !important;
+}
+
+/* Trimester banner: richer rose gradient */
+.trimester-banner, [class*="trimester-banner"] {
+  background: linear-gradient(135deg,
+    rgba(201,72,109,.15) 0%,
+    rgba(230,140,130,.12) 100%) !important;
+  border: 1px solid rgba(201,72,109,.2) !important;
+  box-shadow: 0 2px 10px rgba(201,72,109,.08) !important;
+}
+
+/* Hero heading: no layout shift from banner */
+.hero-heading, h1[class*="greeting"], [class*="hero-greeting"] {
+  line-height: 1.12 !important;
+  letter-spacing: -0.02em !important;
+}
+
+/* Primary CTA: rose glow + press depth */
+.btn-primary, button[class*="primary"], [class*="log-btn"], [class*="nourish-cta"] {
+  box-shadow:
+    0 8px 24px rgba(201,72,109,.30),
+    inset 0 1px 0 rgba(255,255,255,.2) !important;
+  transition: transform 140ms cubic-bezier(0.22,1,0.36,1), box-shadow 160ms ease !important;
+}
+.btn-primary:active, button[class*="primary"]:active {
+  transform: scale(0.97) !important;
+  box-shadow: 0 3px 10px rgba(201,72,109,.2) !important;
+}
+@media (hover: hover) {
+  .btn-primary:hover, button[class*="primary"]:hover {
+    transform: translateY(-1px) !important;
+    box-shadow:
+      0 12px 32px rgba(201,72,109,.36),
+      inset 0 1px 0 rgba(255,255,255,.26) !important;
+  }
+}
+
+/* Nutrient bars: ghost empty state more intentional */
+.nutrient-bar, [class*="progress-bar"], [class*="nutrient-fill"] {
+  border-radius: 999px !important;
+  min-width: 4px !important;
+  transition: width 600ms cubic-bezier(0.22,1,0.36,1) !important;
+}
+/* Empty bars: styled placeholder rather than raw 8% */
+.nutrient-bar:not([style*="width:"]),
+[class*="nutrient-fill"]:empty {
+  width: 0% !important;
+  opacity: 0 !important;
+}
+
+/* Supplement pills: warmer dark mode surface */
+html.dark .supp-pill,
+body.dark .supp-pill,
+html.dark [class*="supp-pill"],
+body.dark [class*="supp-pill"] {
+  background: rgba(58,38,28,.82) !important;
+  border-color: rgba(255,255,255,.08) !important;
+}
+
+/* Score ring: bolder presence */
+.score-number, .nourish-score-value, [class*="score-num"] {
+  font-size: clamp(2.6rem, 9vw, 3.4rem) !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.03em !important;
+}
+
+/* Desktop sidebar: better max-width constraint */
+@media (min-width: 900px) {
+  #tab-viewport, [id*="viewport"], .app-container {
+    max-width: min(1060px, 100%) !important;
+    margin-inline: auto !important;
+  }
+}
+
+/* Light mode: warm canvas top glow */
+body:not(.dark):not([class*="dark"]) {
+  background:
+    radial-gradient(ellipse 80% 40% at 50% 0%,
+      rgba(255,220,220,.4) 0%, transparent 55%),
+    var(--canvas, #fdfaf9) !important;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .nutrient-bar, .btn-primary, .card, .nav-btn { transition: none !important; }
+}
+</style>
+
+<style id="nourish-fix-v4">
+/* ── NOURISH FIX v4: Audit-Driven Execution Pass ── */
+
+/* FIX CRITICAL: Nav at 320px — reinforce width + min-width:0 on buttons
+   Existing fix hides labels but doesn't prevent button min-content overflow */
+@media (max-width: 360px) {
+  .bottom-nav {
+    width: calc(100vw - 8px) !important;
+    padding: 6px 2px !important;
+    gap: 0 !important;
+    border-radius: 22px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+  }
+  .nav-btn {
+    flex: 1 1 0 !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    padding: 6px 1px 4px !important;
+    gap: 1px !important;
+  }
+  .nav-label { display: none !important; }
+  .nav-dot { display: none !important; }
+  .nav-icon { width: 18px !important; height: 18px !important; }
+  /* Override the hidden state transform too */
+  .bottom-nav.nav-hidden {
+    transform: translateX(-50%) translateY(calc(100% + 16px)) !important;
+  }
+}
+
+/* FIX CRITICAL: Daily Log score card at 320px — stack vertically */
+@media (max-width: 360px) {
+  .daily-score-banner {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 8px !important;
+    padding: 12px 10px !important;
+  }
+  .score-text-main {
+    font-size: 12px !important;
+    line-height: 1.3 !important;
+  }
+  .score-text-sub {
+    font-size: 11px !important;
+    line-height: 1.4 !important;
+  }
+}
+
+/* FIX CRITICAL: Food Swaps layout at 320px — allow wrap, fix overflow */
+@media (max-width: 360px) {
+  /* Swap food name: allow wrapping instead of truncating */
+  .swap-food-name {
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: unset !important;
+    font-size: 12px !important;
+    line-height: 1.3 !important;
+  }
+  /* Serving stepper: smaller buttons */
+  .serving-stepper-btn {
+    width: 32px !important;
+    height: 32px !important;
+    min-width: 32px !important;
+    min-height: 32px !important;
+    font-size: 13px !important;
+  }
+  /* Swap card: full bleed, less padding */
+  .swap-card {
+    padding: 10px !important;
+  }
+}
+
+/* POLISH/MEDIUM: Food swap name at 390px — allow wrap for long names */
+@media (max-width: 430px) {
+  .swap-food-name {
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: unset !important;
+    line-height: 1.3 !important;
+  }
+}
+
+/* FIX HIGH: Dark mode — reinforce canvas + fix invisible nutrient bars */
+html.dark body,
+html.dark {
+  --canvas: #1a120e !important;
+  --card: #241810 !important;
+  --border: rgba(255,255,255,0.08) !important;
+  background:
+    radial-gradient(ellipse 60% 28% at 15% 0%, rgba(229,154,130,0.1), transparent 50%),
+    linear-gradient(180deg, #1a120e 0%, #201511 50%, #140e0b 100%) !important;
+}
+html.dark .card,
+html.dark .swap-card,
+html.dark .meal-section {
+  background: #2a1c14 !important;
+  border-color: rgba(255,255,255,0.08) !important;
+}
+/* Nutrient bar tracks — visible in dark mode */
+html.dark .nutrient-bar-track,
+body.dark .nutrient-bar-track,
+html.dark [class*="bar-track"],
+html.dark [class*="progress-track"] {
+  background: rgba(255,255,255,0.12) !important;
+}
+/* Supplement section headers */
+html.dark .supp-section-header,
+html.dark [class*="supp-header"],
+html.dark .supp-group-label {
+  color: rgba(255,255,255,0.55) !important;
+  border-bottom-color: rgba(255,255,255,0.07) !important;
+}
+
+/* FIX HIGH: Trimester banner — nowrap + ellipsis at 320px */
+@media (max-width: 360px) {
+  .trimester-banner-label,
+  [class*="trimester-label"],
+  [class*="week-banner-text"],
+  [class*="trimester-text"] {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    max-width: calc(100vw - 48px) !important;
+  }
+  .trimester-banner-inner {
+    overflow: hidden !important;
+  }
+}
+
+/* FIX HIGH: Range sliders — custom rose styling */
+input[type="range"] {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  height: 6px !important;
+  border-radius: 999px !important;
+  background: rgba(201,72,109,0.16) !important;
+  outline: none !important;
+  cursor: pointer !important;
+  width: 100% !important;
+  padding: 0 !important;
+  border: none !important;
+  min-height: 6px !important;
+}
+input[type="range"]::-webkit-slider-thumb {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  width: 22px !important;
+  height: 22px !important;
+  border-radius: 50% !important;
+  background: var(--rose, #D1907B) !important;
+  box-shadow: 0 2px 8px rgba(201,72,109,0.30), 0 0 0 3px rgba(255,255,255,0.92) !important;
+  cursor: pointer !important;
+  transition: transform 150ms ease !important;
+}
+input[type="range"]::-webkit-slider-thumb:active {
+  transform: scale(1.15) !important;
+}
+input[type="range"]::-moz-range-thumb {
+  width: 22px !important;
+  height: 22px !important;
+  border-radius: 50% !important;
+  background: var(--rose, #D1907B) !important;
+  border: 3px solid rgba(255,255,255,0.92) !important;
+  box-shadow: 0 2px 8px rgba(201,72,109,0.30) !important;
+  cursor: pointer !important;
+}
+input[type="range"]::-moz-range-track {
+  height: 6px !important;
+  border-radius: 999px !important;
+  background: rgba(201,72,109,0.16) !important;
+}
+
+/* FIX MEDIUM: Supplement pills — stronger interactive + checked states */
+.supp-pill {
+  transition:
+    transform 150ms ease,
+    box-shadow 180ms ease,
+    background 150ms ease,
+    border-color 150ms ease !important;
+  border-left: 3px solid transparent !important;
+}
+.supp-pill:active {
+  transform: scale(0.985) !important;
+}
+.supp-pill.taken {
+  border-left-color: #22c55e !important;
+  background: linear-gradient(135deg, rgba(138,168,150,0.15), rgba(138,168,150,0.08)) !important;
+  border-color: rgba(138,168,150,0.5) !important;
+}
+html.dark .supp-pill.taken {
+  background: rgba(78,140,100,0.12) !important;
+  border-left-color: #4ade80 !important;
+  border-color: rgba(78,140,100,0.3) !important;
+}
+
+/* FIX MEDIUM: Plate builder "Add" buttons — rose gradient primary */
+.meal-add-btn {
+  background: linear-gradient(135deg,
+    var(--rose, #D1907B),
+    color-mix(in srgb, var(--rose, #D1907B) 72%, #9a4030)) !important;
+  color: #fff !important;
+  font-weight: 600 !important;
+  border: none !important;
+  box-shadow:
+    0 4px 14px rgba(209,144,123,0.28),
+    inset 0 1px 0 rgba(255,255,255,0.22) !important;
+  transition: transform 140ms ease, box-shadow 160ms ease !important;
+}
+.meal-add-btn:active {
+  transform: scale(0.97) !important;
+  box-shadow: 0 2px 8px rgba(209,144,123,0.2) !important;
+}
+
+/* POLISH: Score ring number — larger and contextual color */
+.score-ring-num {
+  font-size: 14px !important;
+  font-weight: 800 !important;
+}
+.score-ring {
+  width: 58px !important;
+  height: 58px !important;
+}
+
+/* Supplement add button: rose gradient to match system */
+.supp-add-btn {
+  background: linear-gradient(135deg, var(--rose, #D1907B), var(--coral, #E1A97F)) !important;
+  box-shadow: 0 4px 14px rgba(209,144,123,0.25) !important;
+}
+
+/* Extended reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  input[type="range"]::-webkit-slider-thumb { transition: none !important; }
+  .supp-pill { transition: none !important; }
+  .meal-add-btn { transition: none !important; }
+}
+</style>
 
 </body>
 </html>

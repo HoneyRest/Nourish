@@ -11828,5 +11828,56 @@ html.dark .supp-pill.taken {
 }
 </style>
 
+<!-- ═══════════════════════════════════════════════════════════
+     NOURISH — ACCESS BLOCKER RESCUE v1
+     Fixes:
+       1. Entry gate (nourishEntryGate) has no skip — app pointer-events:none
+          blocks all interaction until Hungry/Tired/Balanced is clicked
+       2. Onboarding overlay "Let's go" already works without required fields ✓
+     Strategy:
+       • Inject "Skip for now" button into entry gate options
+       • Clicking it stores balanced in localStorage and hides gate
+     ═══════════════════════════════════════════════════════════ -->
+<script id="nourish-rescue-v1">
+(function () {
+  'use strict';
+
+  function init() {
+    var gate = document.getElementById('nourishEntryGate');
+    if (!gate) return;
+    var options = gate.querySelector('.nourish-entry-options');
+    if (!options) return;
+    if (gate.querySelector('[data-rescue-entry-skip]')) return;
+
+    var skipBtn = document.createElement('button');
+    skipBtn.type = 'button';
+    skipBtn.className = 'nourish-entry-btn nourish-entry-secondary';
+    skipBtn.setAttribute('data-rescue-entry-skip', '1');
+    skipBtn.textContent = 'Skip for now';
+    skipBtn.style.cssText = 'font-size:13px;opacity:0.72;';
+    options.appendChild(skipBtn);
+
+    skipBtn.addEventListener('click', function () {
+      try { localStorage.setItem('nourishEntryFeelV1', 'balanced'); } catch (e) {}
+      gate.setAttribute('hidden', '');
+      gate.classList.remove('is-visible');
+      var app = document.getElementById('app');
+      if (app) {
+        app.removeAttribute('aria-hidden');
+        app.style.pointerEvents = '';
+      }
+      /* Trigger renderAll to update hero insights */
+      try { if (typeof renderAll === 'function') renderAll(); } catch (e2) {}
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    setTimeout(init, 50); /* after gate is possibly made visible */
+  }
+})();
+</script>
+
 </body>
 </html>
